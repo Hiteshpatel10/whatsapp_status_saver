@@ -18,11 +18,15 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.geekaid.whatsappstatussaver.components.BottomNavigationBar
+import com.geekaid.whatsappstatussaver.components.loadInterstitialDelete
+import com.geekaid.whatsappstatussaver.components.loadInterstitialPreview
+import com.geekaid.whatsappstatussaver.components.loadInterstitialSave
 import com.geekaid.whatsappstatussaver.navigation.Navigation
 import com.geekaid.whatsappstatussaver.navigation.Screens
 import com.geekaid.whatsappstatussaver.ui.theme.WhatsappStatusSaverTheme
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
+import com.google.android.gms.ads.MobileAds
 
 @ExperimentalFoundationApi
 @ExperimentalPermissionsApi
@@ -34,6 +38,26 @@ class MainActivity : ComponentActivity() {
 
                 val navHostController = rememberNavController()
                 val mainViewModel: MainViewModel = viewModel()
+
+                MobileAds.initialize(this)
+
+                loadInterstitialDelete(
+                    context = applicationContext,
+                    mainViewModel = mainViewModel,
+                    adUnitId = this.getString(R.string.interstitial_delete)
+                )
+
+                loadInterstitialSave(
+                    context = applicationContext,
+                    mainViewModel = mainViewModel,
+                    adUnitId = this.getString(R.string.interstitial_save)
+                )
+
+                loadInterstitialPreview(
+                    context = applicationContext,
+                    mainViewModel = mainViewModel,
+                    adUnitId = this.getString(R.string.interstitial_preview)
+                )
 
                 val permissionsStateMultiple = rememberMultiplePermissionsState(
                     permissions = listOf(
@@ -82,8 +106,10 @@ fun bottomNavVisibility(navController: NavController): Boolean {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
 
     when (navBackStackEntry?.destination?.route) {
-        "${Screens.ImageStatusPreviewScreen.route}/{file}" -> isBottomNavVisible = false
-        "${Screens.VideoStatusPreviewScreen.route}/{file}/{navigatedFromSaved}" -> isBottomNavVisible = false
+        "${Screens.ImageStatusPreviewScreen.route}/{file}/{navigatedFromDashboard}" -> isBottomNavVisible =
+            false
+        "${Screens.VideoStatusPreviewScreen.route}/{file}/{navigatedFromDashboard}" -> isBottomNavVisible =
+            false
         Screens.DashboardScreenNav.route -> isBottomNavVisible = true
         Screens.SavedStatusScreenNav.route -> isBottomNavVisible = true
     }

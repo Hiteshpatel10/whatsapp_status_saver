@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Whatsapp Status Saver</string>
+
+<!--    <string name="interstitial_save">ca-app-pub-3017813434968451/7271438014</string>-->
+<!--    <string name="interstitial_delete">ca-app-pub-3017813434968451/5059319592</string>-->
+<!--    <string name="banner_ad">ca-app-pub-3017813434968451/3430995460</string> -->
+
+    <string name="interstitial_save">ca-app-pub-3940256099942544/8691691433</string>
+    <string name="interstitial_delete">ca-app-pub-3940256099942544/8691691433</string>
+    <string name="interstitial_preview">ca-app-pub-3940256099942544/8691691433</string>
+    <string name="banner_ad">ca-app-pub-3940256099942544/6300978111</string>
 </resources>

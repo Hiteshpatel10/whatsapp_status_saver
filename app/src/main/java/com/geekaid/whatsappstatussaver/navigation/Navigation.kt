@@ -27,19 +27,30 @@ fun Navigation(navController: NavHostController, mainViewModel: MainViewModel) {
             SavedStatusScreen(mainViewModel = mainViewModel, navController = navController)
         }
 
-        composable("${Screens.ImageStatusPreviewScreen.route}/{file}", arguments = listOf(
-            navArgument("file") { type = NavType.StringType }
-        )) { navBackStackEntry ->
-            ImageStatusPreviewScreen(file = navBackStackEntry.arguments?.getString("file"))
+        composable("${Screens.ImageStatusPreviewScreen.route}/{file}/{navigatedFromDashboard}",
+            arguments = listOf(
+                navArgument("file") { type = NavType.StringType },
+                navArgument("navigatedFromDashboard") { type = NavType.BoolType }
+            )) { navBackStackEntry ->
+
+            ImageStatusPreviewScreen(
+                file = navBackStackEntry.arguments?.getString("file"),
+                navigatedFromDashboard = navBackStackEntry.arguments?.getBoolean("navigatedFromDashboard"),
+                mainViewModel = mainViewModel,
+                navController = navController
+            )
         }
 
-        composable("${Screens.VideoStatusPreviewScreen.route}/{file}",
+        composable("${Screens.VideoStatusPreviewScreen.route}/{file}/{navigatedFromDashboard}",
             arguments = listOf(
-                navArgument("file") { type = NavType.StringType }
+                navArgument("file") { type = NavType.StringType },
+                navArgument("navigatedFromDashboard") { type = NavType.BoolType }
             )) { navBackStackEntry ->
             VideoStatusPreviewScreen(
                 file = navBackStackEntry.arguments?.getString("file"),
-                navController = navController
+                navigatedFromDashboard = navBackStackEntry.arguments?.getBoolean("navigatedFromDashboard"),
+                navController = navController,
+                mainViewModel = mainViewModel,
             )
 
         }

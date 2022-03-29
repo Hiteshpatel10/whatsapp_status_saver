@@ -1,4 +1,4 @@
-package com.geekaid.whatsappstatussaver
+package com.geekaid.whatsappstatussaver.util
 
 import com.geekaid.whatsappstatussaver.navigation.Screens
 

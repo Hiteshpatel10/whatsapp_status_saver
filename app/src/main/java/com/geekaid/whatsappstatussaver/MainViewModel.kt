@@ -1,16 +1,15 @@
 package com.geekaid.whatsappstatussaver
 
-import android.app.Application
-import android.content.Context
 import android.os.Environment
-import androidx.lifecycle.AndroidViewModel
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateOf
+import androidx.lifecycle.ViewModel
 import com.geekaid.whatsappstatussaver.model.Status
 import com.geekaid.whatsappstatussaver.model.StatusType
+import com.google.android.gms.ads.interstitial.InterstitialAd
 import java.io.File
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val context: Context by lazy { application.applicationContext }
+class MainViewModel: ViewModel() {
 
     private var filesList: MutableList<File> = mutableListOf()
     var imageList: MutableList<Status> = mutableListOf()
@@ -19,6 +18,14 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private var filesListSaved: MutableList<File> = mutableListOf()
     var imageListSaved: MutableList<Status> = mutableListOf()
     var videoListSaved: MutableList<Status> = mutableListOf()
+
+    var tabIndex: MutableState<Int> = mutableStateOf(0)
+    var tabIndexSaved: MutableState<Int> = mutableStateOf(0)
+
+    //Ads
+    var mInterstitialAdSave: InterstitialAd? = null
+    var mInterstitialAdDelete: InterstitialAd? = null
+    var mInterstitialAdPreview: InterstitialAd? = null
 
 
     fun getStatus() {
@@ -58,7 +65,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         imageListSaved.clear()
         videoListSaved.clear()
 
-        val path = context.getExternalFilesDir(null).toString()
+        val path = "${Environment.getExternalStorageDirectory()}/WhatsApp/Media/Saved Statuses/"
         val savedStatus = File(path)
 
         if (savedStatus.listFiles() != null) {

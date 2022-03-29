@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "639443641331",
+    "project_id": "whatsapp-status-saver-10",
+    "storage_bucket": "whatsapp-status-saver-10.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:639443641331:android:13cd00babfbff91f512886",
+        "android_client_info": {
+          "package_name": "com.geekaid.whatsappstatussaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "639443641331-6jsiulhjfg1516k6hahpgei587tclvh9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu_AWZaswq3YSC3xhcMmVtZ8xFTKXnaVg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "639443641331-6jsiulhjfg1516k6hahpgei587tclvh9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
